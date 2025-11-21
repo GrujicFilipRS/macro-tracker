@@ -27,7 +27,7 @@ app.add_middleware(
 async def global_exception_handler(request: Request, exc: Exception):
     traceback.print_exc()
     return JSONResponse(
-        status_code=400,
+        status_code=500,
         content={'message': str(exc)}
     )
 
