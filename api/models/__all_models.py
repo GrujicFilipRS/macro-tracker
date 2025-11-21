@@ -1,5 +1,7 @@
 from . import (
-    users
+    users,
+    plans
 )
 
 User = users.User
+Plan = plans.Plan

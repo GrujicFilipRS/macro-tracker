@@ -1,4 +1,5 @@
 from sqlalchemy import Column, Integer, String
+from sqlalchemy.orm import relationship
 from werkzeug.security import generate_password_hash, check_password_hash
 
 from ..db.db_session import SqlAlchemyBase
@@ -9,6 +10,8 @@ class User(SqlAlchemyBase):
     id = Column(Integer, primary_key=True, autoincrement=True)
     username = Column(String, unique=True, nullable=False)
     hashed_password = Column(String, nullable=False)
+
+    plans = relationship('Plan', back_populates='owner')
 
     def to_dict(self) -> dict:
         data: dict = {
