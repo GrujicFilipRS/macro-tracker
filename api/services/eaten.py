@@ -175,3 +175,89 @@ def create_eaten(
     
     finally:
         db_session.close()
+    
+
+@router.delete('/delete_eaten/')
+def delete_eaten(
+    eaten_id: int,
+    headers: Annotated[AuthorizationHeader, Header()]
+) -> JSONResponse:
+    db_session = create_session()
+
+    try:
+        token: str = headers.Authorization
+        if not token:
+            return JSONResponse(content={'message': 'Token required'}, status_code=401)
+        
+        user_id: int = jwt_tokens.get_user_from_token(token)
+        if user_id == -1:
+            return JSONResponse(content={'message': 'Invalid token'}, status_code=401)
+
+        eaten = db_session.get(Eaten, eaten_id)
+
+        if not eaten:
+            return JSONResponse(content={'message': 'Eaten record not found'}, status_code=404)
+        
+        if eaten.user_id != user_id:
+            return JSONResponse(content={'message': 'Unauthorized access to this record'}, status_code=403)
+
+        db_session.delete(eaten)
+        db_session.commit()
+
+        content: dict = {
+            'message': 'Eaten record deleted successfully'
+        }
+
+        return JSONResponse(content=content, status_code=200)
+    
+    except Exception as e:
+        return JSONResponse(content={'message': f'An error occured: {str(e)}'}, status_code=500)
+    
+    finally:
+        db_session.close()
+
+
+@router.put('/update_eaten/')
+def update_eaten(
+    eaten_id: int,
+    eaten_data: dict,
+    headers: Annotated[AuthorizationHeader, Header()]
+) -> JSONResponse:
+    db_session = create_session()
+
+    try:
+        token: str = headers.Authorization
+        if not token:
+            return JSONResponse(content={'message': 'Token required'}, status_code=401)
+        
+        user_id: int = jwt_tokens.get_user_from_token(token)
+        if user_id == -1:
+            return JSONResponse(content={'message': 'Invalid token'}, status_code=401)
+
+        eaten = db_session.get(Eaten, eaten_id)
+
+        if not eaten:
+            return JSONResponse(content={'message': 'Eaten record not found'}, status_code=404)
+        
+        if eaten.user_id != user_id:
+            return JSONResponse(content={'message': 'Unauthorized access to this record'}, status_code=403)
+
+        eaten.food_name = eaten_data.get('food_name', eaten.food_name)
+        eaten.num_proteins = eaten_data.get('num_proteins', eaten.num_proteins)
+        eaten.num_carbs = eaten_data.get('num_carbs', eaten.num_carbs)
+        eaten.num_fats = eaten_data.get('num_fats', eaten.num_fats)
+
+        db_session.commit()
+
+        content: dict = {
+            'message': 'Eaten record updated successfully',
+            'eaten': eaten.to_dict()
+        }
+
+        return JSONResponse(content=content, status_code=200)
+    
+    except Exception as e:
+        return JSONResponse(content={'message': f'An error occured: {str(e)}'}, status_code=500)
+    
+    finally:
+        db_session.close()
