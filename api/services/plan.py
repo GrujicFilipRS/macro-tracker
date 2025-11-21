@@ -87,3 +87,52 @@ def get_user_plans(
     
     finally:
         db_session.close()
+
+
+@router.post('/create_plan/')
+def create_plan(
+    plan_data: dict,
+    headers: Annotated[AuthorizationHeader, Header()]
+) -> JSONResponse:
+    db_session = create_session()
+
+    try:
+        token: str = headers.Authorization
+        if not token:
+            return JSONResponse(content={'message': 'Token required'}, status_code=401)
+        
+        user_id: int = jwt_tokens.get_user_from_token(token)
+        if user_id == -1:
+            return JSONResponse(content={'message': 'Invalid token'}, status_code=401)
+
+        name: str = plan_data.get('name', '')
+        num_proteins: int = plan_data.get('num_proteins', 0)
+        num_carbs: int = plan_data.get('num_carbs', 0)
+        num_fats: int = plan_data.get('num_fats', 0)
+
+        if not name or num_proteins < 0 or num_carbs < 0 or num_fats < 0:
+            return JSONResponse(content={'message': 'Invalid plan data'}, status_code=400)
+
+        new_plan = Plan(
+            name=name,
+            owner_id=user_id,
+            num_proteins=num_proteins,
+            num_carbs=num_carbs,
+            num_fats=num_fats
+        )
+
+        db_session.add(new_plan)
+        db_session.commit()
+
+        content: dict = {
+            'message': 'Plan created successfully',
+            'plan': new_plan.to_dict()
+        }
+
+        return JSONResponse(content=content, status_code=201)
+    
+    except Exception as e:
+        return JSONResponse(content={'message': f'An error occured: {str(e)}'}, status_code=500)
+    
+    finally:
+        db_session.close()
