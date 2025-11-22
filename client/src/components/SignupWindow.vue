@@ -28,7 +28,6 @@ const mode = ref<'signup' | 'login'>('signup');
                     <input
                         type="text"
                         name="username"
-                        placeholder="Please enter your username"
                         required
                     />
 
@@ -36,7 +35,6 @@ const mode = ref<'signup' | 'login'>('signup');
                     <input
                         type="password"
                         name="password"
-                        placeholder="Please enter your password"
                         required
                     />
 
@@ -44,7 +42,6 @@ const mode = ref<'signup' | 'login'>('signup');
                     <input
                         type="password"
                         name="rptPassword"
-                        placeholder="Please repeat your password"
                         required
                     />
 
@@ -58,7 +55,6 @@ const mode = ref<'signup' | 'login'>('signup');
                     <input
                         type="text"
                         name="username"
-                        placeholder="Please enter your username"
                         required
                     />
 
@@ -66,7 +62,6 @@ const mode = ref<'signup' | 'login'>('signup');
                     <input
                         type="password"
                         name="password"
-                        placeholder="Please enter your password"
                         required
                     />
 

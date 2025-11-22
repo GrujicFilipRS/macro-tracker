@@ -24,10 +24,11 @@
 
 .signup-top-section {
     display: flex;
-    justify-content: center;
+    justify-content: space-between;
     align-items: center;
-    gap: 20px;
     margin-bottom: 20px;
+    padding: 30px 50px;
+    gap: 250px;
 }
 
 .signup-mode-button {
@@ -48,11 +49,16 @@
     cursor: auto;
 }
 
+.mode-active:hover {
+    background-color: var(--bg);
+}
+
 .signup-form, .login-form {
     display: flex;
     width: 50%;
     justify-content: center;
     flex: 1;
+    padding-bottom: 80px;
 }
 
 .signup-form form, .login-form form {
@@ -73,4 +79,25 @@
 
     box-shadow: 4px 4px 4px rgba(0, 0, 0, 0.25);
     font-size: 20px;
+    transition: 0.2s;
+    cursor: pointer;
+}
+
+.signup-form form button:hover, .login-form form button:hover {
+    background-color: var(--dark-aqua);
+    transform: translateY(-3px);
+}
+
+.login-form label, .signup-form label {
+    font-size: 20px;
+    margin-top: 17px;
+    margin-bottom: 3px;
+}
+
+.login-form input, .signup-form input {
+    width: 320px;
+    height: 30px;
+    border-radius: 5px;
+    border: 0px;
+    box-shadow: 4px 4px 4px rgba(0, 0, 0, 0.25), 4px 4px 4px rgba(255, 255, 255, 0.25) inset;
 }
