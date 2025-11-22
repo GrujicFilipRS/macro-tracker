@@ -12,6 +12,7 @@ class User(SqlAlchemyBase):
     hashed_password = Column(String, nullable=False)
 
     plans = relationship('Plan', back_populates='owner')
+    eaten_items = relationship('Eaten', back_populates='user')
 
     def to_dict(self) -> dict:
         data: dict = {

@@ -7,10 +7,10 @@ interface VerificationData {
 }
 
 export async function VerifyJWT(token: string): Promise<VerificationData> {
-    return fetch(`${API_ROUTE}/user/current_user`, {
+    return fetch(`${API_ROUTE}/user/get_current_user/`, {
         method: "GET",
         headers: {
-            Authorization: `Bearer ${token}`,
+            Authorization: token,
         },
     })
     .then((res) => {
@@ -20,7 +20,7 @@ export async function VerifyJWT(token: string): Promise<VerificationData> {
         } as VerificationData;
     })
     .catch((err) => {
-        console.error("VerifyJWT failed:", err);
-        return { statusCode: 0, result: "" } as VerificationData;
+        console.log("VerifyJWT failed:", err);
+        return { statusCode: 500, result: "" } as VerificationData;
     });
 }
