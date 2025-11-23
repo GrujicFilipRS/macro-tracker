@@ -5,16 +5,9 @@ import { onMounted, ref } from 'vue';
 import Slider from './Slider.vue';
 
 import { GetTodaysMacros } from '../functions/GetTodaysMacros';
+import type { MacrosInterface } from '../functions/MacrosInterface';
 
-const macros = ref<{
-    proteins: number;
-    carbs: number;
-    fats: number;
-}>({
-    proteins: 0,
-    carbs: 0,
-    fats: 0,
-});
+const macros = ref<MacrosInterface>({} as MacrosInterface);
 
 onMounted(async () => {
     macros.value = await GetTodaysMacros();
@@ -25,7 +18,7 @@ onMounted(async () => {
 <template>
     <div class="today-overview">
         <div class="lside-today">
-            <h3>TODAY</h3>
+            <h3 style="font-size: 20px">TODAY</h3>
             <label for="today-plans">Selected plan:</label>
             <select id="today-plans" name="today-plans">
                 <option value="plan1">Plan 1</option>
@@ -58,3 +51,7 @@ onMounted(async () => {
         </div>
     </div>
 </template>
+
+<style>
+@import url('./TodayOverview.css');
+</style>

@@ -1,5 +1,7 @@
 import { API_ROUTE } from '../api'
 
+import type { MacrosInterface } from './MacrosInterface';
+
 interface EatenData {
     id: number;
     user_id: number;
@@ -10,10 +12,10 @@ interface EatenData {
     num_fats: number;
 }
 
-export const GetTodaysMacros = async () => {
+export async function GetTodaysMacros(): Promise<MacrosInterface> {
     const token = localStorage.getItem('jwt') || '';
 
-    return fetch(`${API_ROUTE}/eaten/get_today_eaten/`, {
+    return await fetch(`${API_ROUTE}/eaten/get_today_eaten/`, {
         method: 'GET',
         headers: {
             'Content-Type': 'application/json',
@@ -24,20 +26,18 @@ export const GetTodaysMacros = async () => {
 
         const eatenData = data['eaten'] as EatenData[];
 
-        let totalProteins = 0;
-        let totalCarbs = 0;
-        let totalFats = 0;
+        let macros = {
+            proteins: 0,
+            carbs: 0,
+            fats: 0
+        } as MacrosInterface;
 
         eatenData.forEach(item => {
-            totalProteins += item.num_proteins;
-            totalCarbs += item.num_carbs;
-            totalFats += item.num_fats;
+            macros.proteins += item.num_proteins;
+            macros.carbs += item.num_carbs;
+            macros.fats += item.num_fats;
         });
 
-        return {
-            proteins: totalProteins,
-            carbs: totalCarbs,
-            fats: totalFats
-        };
+        return macros;
     })
 }

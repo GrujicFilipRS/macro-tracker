@@ -1,0 +1,30 @@
+.today-overview {
+    display: flex;
+    gap: 20px;
+    align-self: center;
+    width: 35%;
+    box-shadow: 4px 4px 4px rgba(0, 0, 0, 0.25),
+        4px 4px 4px rgba(255, 255, 255, 0.25) inset;
+    margin-top: 50px;
+    padding: 20px;
+    justify-content: space-between;
+}
+
+.lside-today {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    width: 30%;
+}
+
+.rside-today {
+    width: 50%;
+}
+
+.today-overview select {
+    padding: 5px;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+    cursor: pointer;
+    font-size: 16px;
+}

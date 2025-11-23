@@ -10,11 +10,13 @@ const props = defineProps<{
 </script>
 
 <template>
-    <HeaderSection
-        :username="props.username"
-    />
+    <main>
+        <HeaderSection
+            :username="props.username"
+        />
 
-    <TodayOverview />
+        <TodayOverview />
+    </main>
 </template>
 
 <style>
