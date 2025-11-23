@@ -36,7 +36,7 @@ const SignUp = async () => {
 
     const {status, message} = await HandleSignup(form.username, form.password);
     if (status === 201) {
-        location.href = '';
+        location.href = '/';
         return;
     }
 
@@ -46,7 +46,7 @@ const SignUp = async () => {
 const LogIn = async () => {
     const {status, message} = await HandleLogin(form.username, form.password);
     if (status === 200) {
-        location.reload();
+        location.href = '/';
         return;
     }
 
