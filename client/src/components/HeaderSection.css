@@ -1,0 +1,22 @@
+header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 30px 50px;
+    color: var(--fore-light);
+    border-bottom: 1px solid var(--fore-light);
+}
+
+header h2 {
+    font-size: 24px;
+}
+
+header img {
+    transition: 0.2s ease-in-out;
+    height: 35px;
+}
+
+header img:hover {
+    cursor: pointer;
+    transform: scale(1.1);
+}

@@ -59,12 +59,15 @@ def get_current_user(headers: Annotated[AuthorizationHeader, Header()]) -> JSONR
             return JSONResponse(content={'message': 'invalid-token'}, status_code=401)
 
         db_sess = create_session()
-        if not db_sess.get(User, user_id):
+
+        user = db_sess.get(User, user_id)
+        if not user:
             return JSONResponse(content={'message': 'invalid-token'}, status_code=401)
 
         content: dict[str, str | int] = {
             'message': 'success',
-            'user_id': user_id
+            'user_id': user_id,
+            'username': user.username
         }
 
         return JSONResponse(content=content, status_code=200)

@@ -3,7 +3,7 @@ export const API_ROUTE = ENV_ROUTE ? ENV_ROUTE : 'http://localhost:8000';
 
 interface VerificationData {
     statusCode: number;
-    result: any;
+    data: any;
 }
 
 export async function VerifyJWT(token: string): Promise<VerificationData> {
@@ -13,14 +13,15 @@ export async function VerifyJWT(token: string): Promise<VerificationData> {
             Authorization: token,
         },
     })
-    .then((res) => {
+    .then(async (res) => {
+        const data = await res.json();
         return {
             statusCode: res.status,
-            result: res,
+            data: data,
         } as VerificationData;
     })
     .catch((err) => {
         console.log("VerifyJWT failed:", err);
-        return { statusCode: 500, result: "" } as VerificationData;
+        return { statusCode: 500, data: "" } as VerificationData;
     });
 }
