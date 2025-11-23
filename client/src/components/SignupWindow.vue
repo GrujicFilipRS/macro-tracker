@@ -101,7 +101,9 @@ const LogIn = async () => {
 
                     <button type="submit">Sign up</button>
 
-                    <p class="error-text" v-show="signupError !== null">{{ errors.get(`signup-${signupError}`) || 'Unknown error' }}</p>
+                    <p class="error-text" v-show="signupError !== null">
+                        {{ errors.get(`signup-${signupError}`) || 'Unknown error' }}
+                    </p>
                 </form>
             </div>
 
@@ -125,7 +127,9 @@ const LogIn = async () => {
 
                     <button type="submit">Log In</button>
 
-                    <p class="error-text" v-show="loginError !== null">{{ errors.get(`login-${loginError}`) || 'Unknown error' }}</p>
+                    <p class="error-text" v-show="loginError !== null">
+                        {{ errors.get(`login-${loginError}`) || 'Unknown error' }}
+                    </p>
                 </form>
             </div>
         </div>
