@@ -91,7 +91,7 @@ def get_user_eaten(
 def get_today_eaten(
     headers: Annotated[AuthorizationHeader, Header()]
 ) -> JSONResponse:
-    from datetime import datetime, timedelta
+    from datetime import datetime, timedelta, timezone
 
     db_session = create_session()
 
@@ -105,7 +105,7 @@ def get_today_eaten(
             return JSONResponse(content={'message': 'Invalid token'}, status_code=401)
 
         today_start = datetime.combine(
-            datetime.now(datetime.timezone.utc).date(),
+            datetime.now(timezone.utc).date(),
             datetime.min.time()
         )
 

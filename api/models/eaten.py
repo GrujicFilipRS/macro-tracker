@@ -21,8 +21,8 @@ class Eaten(SqlAlchemyBase):
         data: dict = {
             'id': self.id,
             'user_id': self.user_id,
-            'food_item': self.food_item,
-            'datetime_eaten': self.datetime_eaten,
+            'food_item': self.food_name,
+            'datetime_eaten': str(self.datetime_eaten),
             'num_proteins': self.num_proteins,
             'num_carbs': self.num_carbs,
             'num_fats': self.num_fats,
