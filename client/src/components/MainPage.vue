@@ -6,6 +6,7 @@ import HeaderSection from './HeaderSection.vue';
 import TodayOverview from './TodayOverview.vue';
 import PlanSection from './PlanSection.vue';
 import CreatePlanSection from './CreatePlanSection.vue';
+import LogEaten from './LogEaten.vue';
 
 const props = defineProps<{
     username: string;
@@ -35,6 +36,8 @@ onMounted(async () => {
         />
 
         <CreatePlanSection v-if="plans.length === 0"/>
+
+        <LogEaten />
     </main>
 </template>
 
