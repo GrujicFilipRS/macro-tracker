@@ -1,6 +1,6 @@
 <script setup lang="ts">
 
-import { onMounted, ref } from 'vue';
+import { onMounted, ref, watch } from 'vue';
 
 import Slider from './Slider.vue';
 
@@ -20,14 +20,29 @@ const props = defineProps<{
 }>();
 
 const selectedPlan = ref<PlanInterface | undefined>(undefined);
+const selectedPlanId = ref<number | undefined>(undefined);
 onMounted(async () => {
     macros.value = await GetTodaysMacros();
-    selectedPlan.value = props.plans && props.plans.length > 0 ? props.plans[0] : undefined;
 });
+
+watch(
+    () => props.plans,
+        (plans) => {
+            if (!plans || plans.length === 0) return;
+
+            const storedId = localStorage.getItem('selectedPlanId');
+            const match = storedId ? plans.find(p => p.id === Number(storedId)) : undefined;
+
+            selectedPlan.value = match ?? plans[0];
+            selectedPlanId.value = selectedPlan.value ? selectedPlan.value.id : undefined;
+        },
+    { immediate: true }
+);
 
 const handlePlanSelect = (e: Event) => {
     const id = Number((e.target as HTMLSelectElement).value);
     selectedPlan.value = props.plans!.find(p => p.id === id) || undefined;
+    localStorage.setItem('selectedPlanId', id.toString());
 }
 
 </script>
@@ -41,6 +56,7 @@ const handlePlanSelect = (e: Event) => {
                 id="today-plans"
                 name="today-plans"
                 @change="handlePlanSelect"
+                v-model="selectedPlanId"
             >
                 <option
                     value=""
