@@ -8,6 +8,9 @@
     margin-top: 50px;
     padding: 20px;
     justify-content: space-between;
+
+    margin-bottom: 75px;
+    color: var(--fore-dark);
 }
 
 .lside-today {

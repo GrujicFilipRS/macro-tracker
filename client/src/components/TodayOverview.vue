@@ -16,7 +16,7 @@ const defaultPlan: MacrosInterface = {
 };
 
 const props = defineProps<{
-    plans: PlanInterface[] | undefined;
+    plans: PlanInterface[];
 }>();
 
 const selectedPlan = ref<PlanInterface | undefined>(undefined);
@@ -28,7 +28,7 @@ onMounted(async () => {
 watch(
     () => props.plans,
         (plans) => {
-            if (!plans || plans.length === 0) return;
+            if (plans.length === 0) return;
 
             const storedId = localStorage.getItem('selectedPlanId');
             const match = storedId ? plans.find(p => p.id === Number(storedId)) : undefined;
