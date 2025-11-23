@@ -59,12 +59,12 @@ const handlePlanSelect = (e: Event) => {
                 v-model="selectedPlanId"
             >
                 <option
-                    value=""
+                    :value="undefined"
                     disabled
                     selected
                     v-if="!props.plans || props.plans.length === 0"
                 >
-                    Create a plan
+                    Create a plan first
                 </option>
 
                 <option
