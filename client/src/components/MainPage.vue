@@ -7,15 +7,19 @@ import TodayOverview from './TodayOverview.vue';
 import PlanSection from './PlanSection.vue';
 import CreatePlanSection from './CreatePlanSection.vue';
 import LogEaten from './LogEaten.vue';
+import EatenToday from './EatenToday.vue';
+import { CheckIfEatenToday } from '../functions/CheckIfEatenToday';
 
 const props = defineProps<{
     username: string;
 }>();
 
 const plans = ref<PlanInterface[]>([]);
+const eatenToday = ref<boolean>(false);
 
 onMounted(async () => {
     plans.value = await GetUserPlans();
+    eatenToday.value = await CheckIfEatenToday();
 });
 
 </script>
@@ -34,6 +38,8 @@ onMounted(async () => {
             v-if="plans.length > 0"
             :plans="plans"
         />
+
+        <EatenToday v-if="eatenToday" />
 
         <CreatePlanSection v-if="plans.length === 0"/>
 

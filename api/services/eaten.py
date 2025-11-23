@@ -54,6 +54,49 @@ def get_eaten(
         db_session.close()
 
 
+@router.get('/user_ate_today/')
+def user_ate_today(
+    headers: Annotated[AuthorizationHeader, Header()]
+) -> JSONResponse:
+    db_session = create_session()
+
+    try:
+        token: str = headers.Authorization
+        if not token:
+            return JSONResponse(content={'message': 'Token required'}, status_code=401)
+        
+        user_id: int = jwt_tokens.get_user_from_token(token)
+        if user_id == -1:
+            return JSONResponse(content={'message': 'Invalid token'}, status_code=401)
+
+        from datetime import datetime, timedelta, timezone
+
+        today_start = datetime.combine(
+            datetime.now(timezone.utc).date(),
+            datetime.min.time()
+        )
+
+        today_end = today_start + timedelta(days=1)
+
+        eaten_exists = db_session.query(Eaten).filter(
+            Eaten.user_id == user_id,
+            Eaten.datetime_eaten >= today_start,
+            Eaten.datetime_eaten < today_end
+        ).first() is not None
+
+        content: dict = {
+            'message': 'Eaten records for today checked',
+            'ate_today': eaten_exists
+        }
+
+        return JSONResponse(content=content, status_code=200)
+
+    except Exception as e:
+        return JSONResponse(content={'message': f'An error occured: {str(e)}'}, status_code=500)
+    
+    finally:
+        db_session.close()
+
 @router.get('/get_user_eaten/')
 def get_user_eaten(
     headers: Annotated[AuthorizationHeader, Header()]
