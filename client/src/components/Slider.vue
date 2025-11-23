@@ -23,7 +23,7 @@ const props = defineProps<{
                 }"
                 disabled
             />
-            <p>{{ props.currentValue }} / {{ props.maxValue }}</p>
+            <p>{{ props.currentValue }}g / {{ props.maxValue }}g</p>
         </div>
     </div>
 </template>

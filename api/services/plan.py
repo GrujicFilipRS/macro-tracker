@@ -73,7 +73,7 @@ def get_user_plans(
 
         plans = db_session.query(Plan).filter(Plan.owner_id == user_id).all()
 
-        plans_list = [plan.to_dict() for plan in plans]
+        plans_list = [plan.to_dict(no_owner=True) for plan in plans]
 
         content: dict = {
             'message': 'User plans retrieved',

@@ -15,14 +15,16 @@ class Plan(SqlAlchemyBase):
 
     owner = relationship('User', back_populates='plans')
 
-    def to_dict(self) -> dict:
+    def to_dict(self, no_owner=False) -> dict:
         data: dict = {
             'id': self.id,
             'name': self.name,
-            'owner_id': self.owner_id,
             'num_proteins': self.num_proteins,
             'num_carbs': self.num_carbs,
             'num_fats': self.num_fats
         }
+
+        if not no_owner:
+            data['owner_id'] = self.owner_id
 
         return data
