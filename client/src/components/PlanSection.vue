@@ -93,9 +93,9 @@ const DeleteSelectedPlan = () => {
         </div>
         
         <div v-if="planSelected" class="rside-plans">
-            <p>Proteins: {{ planSelected.num_proteins }}</p>
-            <p>Carbs: {{ planSelected.num_carbs }}</p>
-            <p>Fats: {{ planSelected.num_fats }}</p>
+            <p>Proteins: {{ planSelected.num_proteins }}g</p>
+            <p>Carbs: {{ planSelected.num_carbs }}g</p>
+            <p>Fats: {{ planSelected.num_fats }}g</p>
         </div>
 
         <div v-if="!planSelected" class="rside-plans">

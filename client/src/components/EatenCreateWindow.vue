@@ -17,7 +17,7 @@ const planForm = reactive<FoodData>({
 const submitForm = () => {
     LogNewFood(planForm).then(() => {
         props.closeWindow();
-        // location.reload();
+        location.reload();
     });
 }
 
@@ -29,7 +29,7 @@ const submitForm = () => {
             <h2>Log new food item</h2>
             <form @submit.prevent="submitForm">
                 <div>
-                    <label for="name">Plan Name: </label>
+                    <label for="name">Food Name: </label>
                     <input id="name" v-model="planForm.food_name" />
                 </div>
 
