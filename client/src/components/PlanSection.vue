@@ -5,6 +5,7 @@ import type { PlanInterface } from '../functions/GetUserPlans';
 import { DeletePlan } from '../functions/DeletePlan';
 
 import PlanCreateWindow from './PlanCreateWindow.vue';
+import PlanEditWindow from './PlanEditWindow.vue';
 
 const props = defineProps<{
     plans: PlanInterface[];
@@ -24,6 +25,15 @@ const OpenCreateWindow = () => {
 
 const CloseCreateWindow = () => {
     createWindowOpened.value = false;
+}
+
+const editWindowOpened = ref<boolean>(false);
+const OpenEditWindow = () => {
+    editWindowOpened.value = true;
+}
+
+const CloseEditWindow = () => {
+    editWindowOpened.value = false;
 }
 
 const DeleteSelectedPlan = () => {
@@ -48,7 +58,12 @@ const DeleteSelectedPlan = () => {
                         @click="() => OpenCreateWindow()"
                         style="font-size: 13px;"
                     >+</button>
-                    <button title="Edit selected plan" :disabled="!planSelected" style="font-size:13px;">✎</button>
+                    <button
+                        title="Edit selected plan"
+                        :disabled="!planSelected"
+                        style="font-size:13px;"
+                        @click="OpenEditWindow()"
+                    >✎</button>
                     <button
                         title="Delete selected plan"
                         :disabled="!planSelected"
@@ -91,6 +106,12 @@ const DeleteSelectedPlan = () => {
     <PlanCreateWindow
         v-if="createWindowOpened"
         :close-window="CloseCreateWindow"
+    />
+
+    <PlanEditWindow
+        :plan="planSelected!"
+        :close-window="CloseEditWindow"
+        v-if="editWindowOpened"
     />
 </template>
 
