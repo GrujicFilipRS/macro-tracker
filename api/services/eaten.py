@@ -196,7 +196,7 @@ def create_eaten(
 
         new_eaten = Eaten(
             user_id=user_id,
-            food_name=eaten_data.get('food_name'),
+            food_name=eaten_data.get('food_item'),
             datetime_eaten=datetime.now(timezone.utc),
             num_proteins=eaten_data.get('num_proteins'),
             num_carbs=eaten_data.get('num_carbs'),
@@ -285,7 +285,7 @@ def update_eaten(
         if eaten.user_id != user_id:
             return JSONResponse(content={'message': 'Unauthorized access to this record'}, status_code=403)
 
-        eaten.food_name = eaten_data.get('food_name', eaten.food_name)
+        eaten.food_name = eaten_data.get('food_item', eaten.food_name)
         eaten.num_proteins = eaten_data.get('num_proteins', eaten.num_proteins)
         eaten.num_carbs = eaten_data.get('num_carbs', eaten.num_carbs)
         eaten.num_fats = eaten_data.get('num_fats', eaten.num_fats)

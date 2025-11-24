@@ -7,11 +7,12 @@ const props = defineProps<{closeWindow: any}>();
 
 const planForm = reactive<FoodData>({
     id: 0,
-    food_name: '',
+    food_item: '',
     num_proteins: 0,
     num_carbs: 0,
     num_fats: 0,
-    datetime_eaten: ''
+    datetime_eaten: '',
+    user_id: 0
 });
 
 const submitForm = () => {
@@ -30,7 +31,7 @@ const submitForm = () => {
             <form @submit.prevent="submitForm">
                 <div>
                     <label for="name">Food Name: </label>
-                    <input id="name" v-model="planForm.food_name" />
+                    <input id="name" v-model="planForm.food_item" />
                 </div>
 
                 <div>

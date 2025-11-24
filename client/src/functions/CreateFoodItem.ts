@@ -2,11 +2,12 @@ import { API_ROUTE } from "../api";
 
 export interface FoodData {
     id: number;
-    food_name: string;
+    food_item: string;
     datetime_eaten: string;
     num_proteins: number;
     num_carbs: number;
     num_fats: number;
+    user_id: number;
 }
 
 export const LogNewFood = async (foodItem: FoodData) => {
