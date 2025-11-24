@@ -10,7 +10,7 @@ export interface PlanData {
 export const CreateNewPlan = async (planData: PlanData) => {
     const token = localStorage.getItem('jwt') || '';
 
-    fetch(`${API_ROUTE}/plan/create_plan/`, {
+    return fetch(`${API_ROUTE}/plan/create_plan/`, {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json',
