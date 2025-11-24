@@ -3,8 +3,8 @@ header {
     justify-content: space-between;
     align-items: center;
     padding: 30px 50px;
-    color: var(--fore-light);
-    border-bottom: 1px solid var(--fore-light);
+    color: var(--fore-dark);
+    border-bottom: 1px solid var(--fore-dark);
 }
 
 header h2 {

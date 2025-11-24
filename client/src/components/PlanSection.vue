@@ -19,28 +19,30 @@ const handlePlanSelect = (e: Event) => {
     <div class="plan-section">
         <div class="lside-plans">
             <div class="top-lside-plans">
-                <h3>Your plans</h3>
-
-                <button>+</button>
-                <button :disabled="!planSelected">✎</button>
+                <h3>YOUR PLANS</h3>
+                
+                <div style="display: flex;gap: 5px;">
+                    <button title="Create new plan">+</button>
+                    <button title="Edit selected plan" :disabled="!planSelected">✎</button>
+                </div>
             </div>
 
-            <p v-if="plans.length === 0">You currently have no plans</p>
-            
-            <div
-                v-for="plan in props.plans"
-                :key="plan.id"
-            >
-                <input
-                    type="radio"
-                    name="selectedPlan"
-                    :id="plan.id.toString()"
-                    :value="plan.name"
-                    @change="handlePlanSelect"
-                />
-                <label :for="plan.id.toString()">
-                {{ plan.name }}
-                </label>
+            <div class="plan-list">
+                <div
+                    v-for="plan in props.plans"
+                    :key="plan.id"
+                >
+                    <input
+                        type="radio"
+                        name="selectedPlan"
+                        :id="plan.id.toString()"
+                        :value="plan.name"
+                        @change="handlePlanSelect"
+                    />
+                    <label :for="plan.id.toString()">
+                    {{ plan.name }}
+                    </label>
+                </div>
             </div>
         </div>
         

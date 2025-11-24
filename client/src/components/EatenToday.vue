@@ -7,3 +7,7 @@
         <p>This is where the list of items eaten today will be displayed.</p>
     </div>
 </template>
+
+<style>
+@import url('./EatenToday.css');
+</style>
