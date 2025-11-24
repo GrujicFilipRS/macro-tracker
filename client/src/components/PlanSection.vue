@@ -1,6 +1,7 @@
 <script setup lang="ts">
 import { ref } from 'vue';
 import type { PlanInterface } from '../functions/GetUserPlans';
+import PlanCreateWindow from './PlanCreateWindow.vue';
 
 const props = defineProps<{
     plans: PlanInterface[];
@@ -13,6 +14,15 @@ const handlePlanSelect = (e: Event) => {
     planSelected.value = props.plans.find(p => p.id === id) || undefined;
 }
 
+const createWindowOpened = ref<boolean>(false);
+const OpenCreateWindow = () => {
+    createWindowOpened.value = true;
+}
+
+const CloseCreateWindow = () => {
+    createWindowOpened.value = false;
+}
+
 </script>
 
 <template>
@@ -22,7 +32,10 @@ const handlePlanSelect = (e: Event) => {
                 <h3>YOUR PLANS</h3>
                 
                 <div style="display: flex;gap: 5px;">
-                    <button title="Create new plan">+</button>
+                    <button
+                        title="Create new plan"
+                        @click="() => OpenCreateWindow()"
+                    >+</button>
                     <button title="Edit selected plan" :disabled="!planSelected">✎</button>
                 </div>
             </div>
@@ -56,6 +69,11 @@ const handlePlanSelect = (e: Event) => {
             <p>Please select a plan</p>
         </div>
     </div>
+
+    <PlanCreateWindow
+        v-if="createWindowOpened"
+        :close-window="CloseCreateWindow"
+    />
 </template>
 
 <style>

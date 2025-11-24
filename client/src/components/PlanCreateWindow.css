@@ -1,0 +1,56 @@
+.plan-create-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.plan-create-window {
+    background-color: var(--bg);
+    border-radius: 10px;
+    padding: 30px;
+    color: var(--fore-dark);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.plan-create-overlay h2 {
+    margin-top: 0;
+    margin-bottom: 20px;
+    text-align: center;
+}
+
+.plan-create-window form {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    margin-bottom: 20px;
+}
+
+.plan-create-window form button {
+    margin-top: 10px;
+    padding: 10px 20px;
+    background-color: var(--aqua);
+    color: var(--fore-dark);
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: 0.15s;
+    align-self: center;
+}
+
+.plan-create-window form button:hover {
+    background-color: var(--dark-aqua);
+}
+
+.plan-create-window form div {
+    display: flex;
+    justify-content: space-between;
+    gap: 50px;
+}
