@@ -192,12 +192,12 @@ def create_eaten(
         if user_id == -1:
             return JSONResponse(content={'message': 'Invalid token'}, status_code=401)
 
-        import datetime
+        from datetime import datetime, timezone
 
         new_eaten = Eaten(
             user_id=user_id,
             food_name=eaten_data.get('food_name'),
-            datetime_eaten=datetime.now(datetime.timezone.utc),
+            datetime_eaten=datetime.now(timezone.utc),
             num_proteins=eaten_data.get('num_proteins'),
             num_carbs=eaten_data.get('num_carbs'),
             num_fats=eaten_data.get('num_fats')
