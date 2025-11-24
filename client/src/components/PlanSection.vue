@@ -1,6 +1,9 @@
 <script setup lang="ts">
 import { ref } from 'vue';
+
 import type { PlanInterface } from '../functions/GetUserPlans';
+import { DeletePlan } from '../functions/DeletePlan';
+
 import PlanCreateWindow from './PlanCreateWindow.vue';
 
 const props = defineProps<{
@@ -23,6 +26,14 @@ const CloseCreateWindow = () => {
     createWindowOpened.value = false;
 }
 
+const DeleteSelectedPlan = () => {
+    if (!planSelected.value) return;
+
+    DeletePlan(planSelected.value.id).then(() => {
+        location.reload();
+    });
+}
+
 </script>
 
 <template>
@@ -35,8 +46,15 @@ const CloseCreateWindow = () => {
                     <button
                         title="Create new plan"
                         @click="() => OpenCreateWindow()"
+                        style="font-size: 13px;"
                     >+</button>
-                    <button title="Edit selected plan" :disabled="!planSelected">✎</button>
+                    <button title="Edit selected plan" :disabled="!planSelected" style="font-size:13px;">✎</button>
+                    <button
+                        title="Delete selected plan"
+                        :disabled="!planSelected"
+                        style="font-size:8px;"
+                        @click="DeleteSelectedPlan"
+                    >❌</button>
                 </div>
             </div>
 
