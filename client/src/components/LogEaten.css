@@ -1,16 +1,5 @@
 .log-food {
-    width: 35%;
-    align-self: center;
-    display: flex;
-    flex-direction: column;
-    padding: 20px;
-
-    box-shadow: 4px 4px 4px rgba(0, 0, 0, 0.25),
-        4px 4px 4px rgba(255, 255, 255, 0.25) inset;
-    
     text-align: center;
-    gap: 15px;
-    color: var(--fore-dark);
     margin-bottom: 150px;
 }
 

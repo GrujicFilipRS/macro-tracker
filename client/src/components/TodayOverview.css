@@ -1,14 +1,6 @@
 .today-overview {
-    display: flex;
-    gap: 20px;
-    align-self: center;
-    width: 35%;
-    box-shadow: 4px 4px 4px rgba(0, 0, 0, 0.25),
-        4px 4px 4px rgba(255, 255, 255, 0.25) inset;
-    padding: 20px;
+    flex-direction: row;
     justify-content: space-between;
-
-    color: var(--fore-dark);
 }
 
 .lside-today {

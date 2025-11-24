@@ -16,7 +16,7 @@ const handlePlanSelect = (e: Event) => {
 </script>
 
 <template>
-    <div class="plan-section">
+    <div class="page-section plan-section">
         <div class="lside-plans">
             <div class="top-lside-plans">
                 <h3>YOUR PLANS</h3>

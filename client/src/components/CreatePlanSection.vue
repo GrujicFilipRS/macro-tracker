@@ -2,7 +2,7 @@
 </script>
 
 <template>
-    <div class="create-plan-section">
+    <div class="page-section create-plan-section">
         <h2>You have no plans yet</h2>
         <p>Please create a plan to get started</p>
         <button>Create Plan</button>

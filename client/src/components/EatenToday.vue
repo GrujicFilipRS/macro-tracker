@@ -2,7 +2,7 @@
 </script>
 
 <template>
-    <div class="eaten-today">
+    <div class="page-section eaten-today">
         <h2>Eaten Today</h2>
         <p>This is where the list of items eaten today will be displayed.</p>
     </div>

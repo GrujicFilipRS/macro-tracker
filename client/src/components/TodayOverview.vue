@@ -48,7 +48,7 @@ const handlePlanSelect = (e: Event) => {
 </script>
 
 <template>
-    <div class="today-overview">
+    <div class="page-section today-overview">
         <div class="lside-today">
             <h3 style="font-size: 20px">TODAY</h3>
             <label for="today-plans">Selected plan:</label>
