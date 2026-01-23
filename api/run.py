@@ -9,7 +9,7 @@ from .db import db_session
 from .router import configure_routing
 
 load_dotenv()
-db_session.global_init(os.getenv('DB_FILE', 'db/database.sqlite'))
+db_session.global_init()
 
 app = FastAPI()
 

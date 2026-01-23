@@ -6,7 +6,7 @@ SqlAlchemyBase = orm.declarative_base()
 __factory = None
 
 
-def global_init(db_file: str = None):
+def global_init(db_file: str = 'db/database.sqlite'):
     global __factory
 
     if __factory:
@@ -16,7 +16,12 @@ def global_init(db_file: str = None):
 
     if connection_string:
         print(f'Connecting to remote DB at {connection_string}')
-        engine = create_engine(connection_string, echo=False, future=True)
+        engine = create_engine(
+            connection_string,
+            echo=False,
+            future=True,
+            pool_pre_ping=True
+        )
     else:
         if not db_file or not db_file.strip():
             raise Exception('Database file isn\'t specified and no DATABASE_URL found!')
@@ -28,7 +33,11 @@ def global_init(db_file: str = None):
 
         connection_string = f'sqlite:///{db_path}?check_same_thread=False'
         print(f'Connecting to SQLite DB at {connection_string}')
-        engine = create_engine(connection_string, echo=False, future=True)
+        engine = create_engine(
+            connection_string,
+            echo=False,
+            future=True
+        )
 
     __factory = orm.sessionmaker(bind=engine, autoflush=False, autocommit=False)
 
