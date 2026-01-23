@@ -1,0 +1,15 @@
+services:
+  macros-api:
+    build:
+      context: ./api
+      dockerfile: Dockerfile.prod
+    env_file:
+      - .env
+    expose:
+      - "5000"
+    networks:
+      - web
+
+networks:
+  web:
+    external: true

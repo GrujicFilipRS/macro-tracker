@@ -1,7 +1,7 @@
 from sqlalchemy import Column, Integer, String, DateTime, ForeignKey
 from sqlalchemy.orm import relationship
 
-from ..db.db_session import SqlAlchemyBase
+from db.db_session import SqlAlchemyBase
 
 
 class Eaten(SqlAlchemyBase):

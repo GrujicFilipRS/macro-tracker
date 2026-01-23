@@ -3,12 +3,12 @@ from fastapi import Header
 from pydantic import BaseModel
 from typing import Annotated
 
-from ..db.db_session import create_session
+from db.db_session import create_session
 
-from ..models.users import User
+from models.users import User
 
-from ..utils import jwt_tokens
-from .authorization import AuthorizationHeader
+from utils import jwt_tokens
+from services.authorization import AuthorizationHeader
 
 from fastapi import APIRouter
 

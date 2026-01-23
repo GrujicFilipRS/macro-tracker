@@ -1,5 +1,5 @@
 const ENV_ROUTE = import.meta.env.VITE_API_URL;
-export const API_ROUTE = ENV_ROUTE ? ENV_ROUTE : 'http://localhost:8000';
+export const API_ROUTE = ENV_ROUTE ? ENV_ROUTE : 'http://localhost:5000';
 
 interface VerificationData {
     statusCode: number;

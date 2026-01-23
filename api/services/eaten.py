@@ -2,12 +2,12 @@ from fastapi.responses import JSONResponse
 from fastapi import Header
 from typing import Annotated
 
-from ..db.db_session import create_session
+from db.db_session import create_session
 
-from ..models.eaten import Eaten
+from models.eaten import Eaten
 
-from ..utils import jwt_tokens
-from .authorization import AuthorizationHeader
+from utils import jwt_tokens
+from services.authorization import AuthorizationHeader
 
 from fastapi import APIRouter
 

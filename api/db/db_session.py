@@ -26,7 +26,7 @@ def global_init(db_file: str = 'db/database.sqlite'):
         if not db_file or not db_file.strip():
             raise Exception('Database file isn\'t specified and no DATABASE_URL found!')
 
-        base_dir = os.path.abspath(os.path.join(os.path.dirname(__file__), ".."))
+        base_dir = os.path.abspath(os.path.join(os.path.dirname(__file__), ""))
         db_path = os.path.abspath(os.path.join(base_dir, db_file.strip()))
 
         os.makedirs(os.path.dirname(db_path), exist_ok=True)
@@ -41,7 +41,7 @@ def global_init(db_file: str = 'db/database.sqlite'):
 
     __factory = orm.sessionmaker(bind=engine, autoflush=False, autocommit=False)
 
-    from ..models import __all_models
+    from models import __all_models
 
     SqlAlchemyBase.metadata.create_all(engine)
 

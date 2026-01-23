@@ -1,4 +1,4 @@
-from . import (
+from models import (
     users,
     plans,
     eaten

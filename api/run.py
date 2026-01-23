@@ -5,8 +5,8 @@ import os
 import traceback
 from dotenv import load_dotenv
 
-from .db import db_session
-from .router import configure_routing
+from db import db_session
+from router import configure_routing
 
 load_dotenv()
 db_session.global_init()

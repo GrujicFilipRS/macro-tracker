@@ -2,7 +2,7 @@ from sqlalchemy import Column, Integer, String
 from sqlalchemy.orm import relationship
 from werkzeug.security import generate_password_hash, check_password_hash
 
-from ..db.db_session import SqlAlchemyBase
+from db.db_session import SqlAlchemyBase
 
 class User(SqlAlchemyBase):
     __tablename__ = 'users'
