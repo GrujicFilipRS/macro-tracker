@@ -1,5 +1,5 @@
 services:
-  macros-api:
+  macros-backend:
     build:
       context: ./api
       dockerfile: Dockerfile.prod
@@ -16,7 +16,7 @@ services:
     env_file:
       - .env
     depends_on:
-      - macros-api
+      - macros-backend
     networks:
       - web
 
