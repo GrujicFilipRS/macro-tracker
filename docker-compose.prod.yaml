@@ -11,12 +11,10 @@ services:
       - web
   macros-frontend:
     build:
-      context: ./frontend
+      context: ./client
       dockerfile: Dockerfile.prod
     env_file:
       - .env
-    ports:
-      - "80:80"
     depends_on:
       - macros-api
     networks:
