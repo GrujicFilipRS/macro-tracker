@@ -20,3 +20,9 @@ header img:hover {
     cursor: pointer;
     transform: scale(1.1);
 }
+
+@media (max-width: 400px) {
+    header {
+        padding: 30px 20px;
+    }
+}

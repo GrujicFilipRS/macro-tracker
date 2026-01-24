@@ -1,7 +1,6 @@
 .create-plan-section {
     display: flex;
     flex-direction: column;
-    width: 35%;
     align-self: center;
     gap: 15px;
 

@@ -21,3 +21,21 @@
     cursor: pointer;
     font-size: 16px;
 }
+
+@media (max-width: 1370px) {
+    .today-overview {
+        flex-direction: column;
+        align-items: center;
+        gap: 30px;
+    }
+
+    .lside-today, .rside-today {
+        width: 100%;
+    }
+}
+
+@media (max-width: 730px) {
+    .today-overview select {
+        width: 100%;
+    }
+}

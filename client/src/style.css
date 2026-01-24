@@ -39,3 +39,15 @@
     background-color: #ffa7a7;
     cursor: pointer;
 }
+
+@media (max-width: 900px) {
+    .page-section {
+        width: 60%;
+    }
+}
+
+@media (max-width: 425px) {
+    .page-section {
+        width: 80%;
+    }
+}
