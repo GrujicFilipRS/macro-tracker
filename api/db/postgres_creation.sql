@@ -1,9 +1,9 @@
 -- This file is a configuration file for setting up a postgres database for this project
 
 CREATE TABLE users (
-  id SERIAL PRIMARY KEY,
-  username TEXT UNIQUE NOT NULL,
-  hashed_password TEXT NOT NULL
+    id SERIAL PRIMARY KEY,
+    username TEXT UNIQUE NOT NULL,
+    hashed_password TEXT NOT NULL
 );
 
 CREATE TABLE plans (
